@@ -1,0 +1,166 @@
+<div class="container m-5">
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+
+            <thead class='thead'>
+            <tr>
+                <th>Item</th>
+                <th class="text-center">Quatity</th>
+                <th class="text-center">Unit Price</th>
+                <th class="text-center">SubTotal</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let list of cartitems; index as i">
+                    
+                    <td>
+                        <img
+                        class="img-thumbnail .img-responsive"
+                        src="https://www.perma-horti.com/wp-content/uploads/2019/02/image-2.jpg"
+                        style="height:80px;width:100px;"
+                        />
+                        <p class="d-inline fw-bold ps-3">{{list.product.name}}</p>
+                        
+                    </td>
+                    <td class="text-center">{{list.quantity}}</td>   
+                    <td class="text-center">{{list.product.price}} EG</td>
+                    <td class="text-center">{{list.product.price * list.quantity}}</td>
+                    
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="1"></td>
+                    <td class="fw-bold">Total Price : </td>
+                    <td colspan="2">{{ totalPrice }} EG</td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+    <div class="row"
+        *ngIf="userAccount != null">
+        <h4 class="text-primary">Address Details</h4>
+        <div class="col-md-12">
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{userAccount.first_name}} {{userAccount.last_name}}   
+                    </h5>
+
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {{ userAccount.address}} 
+                    </h6>
+                    <p class="card-text">
+                        {{userAccount.phone}}
+                    </p>
+
+                    <button
+                    class="btn btn-outline-primary"
+                    (click)="editAddress()">Change</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="text-primary">Payment Method</h4>
+        <div class="col-md-12">
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <div class="form-check">
+                            <input class="form-check-input" 
+                                type="radio" name="radio" 
+                                id="flexRadioDefault1" value="cash"
+                                [(ngModel)]="paymentMethod">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Cash on Delivery
+                            </label>
+                        </div>   
+                    </h5>
+
+                    <h6 class="card-subtitle mb-2 text-muted ms-4">
+                        Delivered between {{ orderDate }} and {{ shippingDate }}. <span class="text-info">for EGP 25</span> 
+                    </h6>
+                    <p class="card-text ms-5">
+                        Please make sure you have entered your home address, not your office one, so that we can deliver your order successfully.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" 
+                        name="radio" id="flexRadioDefault1" value="credit"
+                        [(ngModel)]="paymentMethod">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Credit Card
+                        </label>
+                    </div>   
+                    </h5>
+
+                    <h6 class="card-subtitle mb-2 text-muted ms-4">
+                        Delivered between {{ orderDate }} and {{ shippingDate }}. <span class="text-info">for EGP 25</span> 
+                    </h6>
+                    <p class="card-text ms-5">
+                        Please make sure you have entered your home address, not your office one, so that we can deliver your order successfully.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 class="text-primary">Shipment</h4>
+        <div class="col-md-12">
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="card-title fw-bold d-flex">
+                        <div class="">SubTotal :</div>
+                        <div class=" ms-auto"> {{ totalPrice }} EG </div>   
+                    </div>
+                    
+                    <div class="card-title fw-bold d-flex">
+                        <div class="">Shipping Amount :</div>
+                        <div class=" ms-auto"> 25 EG </div>
+                    </div>
+                    <hr>
+                    <div class="card-title fw-bolder d-flex">
+                        <div class="">Total :</div>
+                        <div class=" ms-auto"> {{totalPrice + 25}} </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+
+            <div class="alert text-center" *ngIf="paymentMethod == null" role="alert">
+                <h4 class="alert-heading text-danger">{{ Message }}</h4>
+            </div>
+
+            <button 
+                class="btn btn-primary btn-lg form-control form-control"
+                (click)="checkOut()"
+                >Confirm Your Order</button>
+                <!-- data-bs-dismiss= *ngIf="" -->
+        </div>
+    </div>
+    
+</div>
+  
+  

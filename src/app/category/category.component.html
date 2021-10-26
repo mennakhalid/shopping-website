@@ -1,0 +1,44 @@
+<div class="container text-center m-5"
+    *ngIf="show == false">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>No Products Yet</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container m-5"
+    *ngIf="show == true">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center border border-primary m-3">
+                <h3 
+                *ngIf="categoryname != null">Shop by Category</h3>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row ">
+        <div class="col-lg-4 col-md-4 col-sm-4"
+            *ngFor="let x of products; let i = index" 
+            >
+            <div class="card mb-3" style="width: 18rem; height: 30rem;">
+                <img 
+                    src="{{x.image}}" 
+                    style="width: 15rem; height: 20rem;"
+                    class="card-img-top mx-auto p-2" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{x.name}}</h5>
+                  <p class="card-text">{{x.price}} EG</p>
+                <button class="btn btn-primary "
+                (click)="addToUser(i)">Add to Cart</button>
+
+                <button class="btn btn-primary ms-4"
+                (click)="openDetailsPage(x.name)">View Details</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

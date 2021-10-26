@@ -1,0 +1,80 @@
+<div>
+    <h1
+    *ngIf="totalItems == 0"
+    class="text-center text-mutated p-5">No Items et</h1>
+
+    <div class="table-responsive"
+    *ngIf="totalItems > 0">
+        <h2>Cart ( {{ totalItems }} items )</h2>
+
+        <table class="table table-hover">
+            <thead class='thead'>
+                <tr>
+                    <th>Item</th>
+                    <th class="text-center">Quatity</th>
+                    <th class="text-center">Unit Price</th>
+                    <th class="text-center">SubTotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let list of cartUserItems; index as i">
+                    
+                    <td>
+                        <img
+                        class="img-thumbnail .img-responsive"
+                        src="{{list.product.image}}"
+                        style="height:80px;width:100px;"
+                        />
+                        <p class="d-inline fw-bold ps-3">{{list.product.name}}</p>
+                        
+                    </td>
+
+                    <td class="text-center">
+                        <select class="form-select"
+                        (change)="onChange($event,i)">
+                                <option
+                                    *ngFor="let quan of counter(list.product.quantity); let j = index"
+                                    [selected]="j+1 == list.quantity"
+                                    value={{j+1}}>
+                                    {{j+1}}
+                            </option>
+                        </select>
+                    </td>       
+                    <td class="text-center">{{list.product.price}} EG</td>
+                    <td class="text-center">{{list.product.price * list.quantity}}</td>
+
+                    <td>
+                        <button
+                            class="btn btn-danger"
+                            (click)="deleteProduct(list.id)">
+                            Remove Item
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td class="fw-bold">Total Price : </td>
+                    <td colspan="2">{{ totalPrice }} EG</td>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="mx-5">
+        <button
+        *ngIf="totalItems > 0"
+            class="btn btn-primary btn-lg form-control form-control-sm"
+            (click)="checkOut()">
+            Check Out
+        </button>
+    </div>
+  </div>
+  
+  

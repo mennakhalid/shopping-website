@@ -1,0 +1,109 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-2 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-md-2">
+                        <h3 class="mb-2 pb-md-0 mb-md-2 text-center">Add New Product</h3>
+
+                        <p *ngIf="validMessage != ''">{{validMessage}}</p>
+                        <form #addProduct="ngForm" (ngSubmit)="addNewProduct()">
+
+                            <div class="row">
+                                <div class="col-md-12 mb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="categoryName">Category Name</label>
+                                        <input type="text" 
+                                            id="categoryName" 
+                                            class="form-control form-control-lg"
+                                            name="category_name" 
+                                            [(ngModel)]="categoryName"/>   
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="productName">Product Name</label>
+                                        <input type="text" 
+                                            id="productName" 
+                                            class="form-control form-control-lg"
+                                            name="name" 
+                                            [(ngModel)]="product.name"/>   
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="productQuantity">Product Quantity</label>
+                                        <input type="number" 
+                                            id="productQuantity" 
+                                            class="form-control form-control-lg" 
+                                            name="quantity"
+                                            [(ngModel)]="product.quantity"/>   
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="productUnitPrice">Product Unit Price</label>
+                                        <input type="text" 
+                                            id="productUnitPrice" 
+                                            class="form-control form-control-lg" 
+                                            name="unitPrice"
+                                            [(ngModel)]="product.price"/>   
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="productUnitPrice">Product Image</label>
+                                        <input type="text" 
+                                            id="productUnitPrice" 
+                                            class="form-control form-control-lg" 
+                                            name="image"
+                                            [(ngModel)]="product.image"/>   
+                                    </div>
+
+                                </div>
+
+                            </div>   
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="productDescription">Product Description</label>
+                                        <textarea name="" 
+                                            id="productDescription" 
+                                            cols="50" rows="7"
+                                            name="description"
+                                            [(ngModel)]="product.description"></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mb-2">
+
+                                    <div class="form-outline">
+                                        <input class="btn btn-primary btn-lg form-control form-control-lg" type="submit" value="ADD" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

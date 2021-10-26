@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark" >
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <h4>Categories</h4>
+                <ul class="nav nav-pills flex-column mb-0 align-items-center align-items-sm-start" id="menu"
+                *ngFor="let category of categories">
+                    <li class="nav-item">
+                        <a 
+                            [routerLink]="['category', category.name]"
+                            class="nav-link text-truncate text-white text-wrap">
+                            <span class="ms-1 d-none d-sm-inline">{{category.name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9 py-3 mx-auto">
+            <div class="row">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner"
+                        >
+                        <div class="carousel-item"
+                            *ngFor="let categoryItem of categories; let i =index"
+                            [ngClass]="{'active': i == 0 }">
+                            
+                            <a [routerLink]="['category', categoryItem.name]">
+                                <img src="{{categoryItem.image}}"
+                                 class="d-block w-100 rounded float-start" height="500px"  alt="...">
+                                 <div class="carousel-caption d-none d-md-block text-black">
+                                    <h4 class="fw-bolder">{{ categoryItem.name}} </h4>
+                                    <p>{{categoryItem.description}}</p>
+                                </div>
+                            </a>
+
+                            
+                        </div>
+                        
+                    </div>
+    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+    
+                </div>
+
+                <div class="col-md-10 mx-auto">
+
+                    <div class="text-center border border-primary m-3">
+                        <h3>Best Selling Products</h3>
+                    </div>
+    
+                </div>
+
+
+                <div class="col-lg-4"
+                    *ngFor="let x of products; let i = index" 
+                    >
+            <div class="card mb-3" style="width: 18rem; height: 30rem;">
+                <img 
+                    src="{{x.image}}" 
+                    style="width: 15rem; height: 20rem;"
+                    class="card-img-top p-2" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{x.name}}</h5>
+                  <p class="card-text">{{x.price}} EG</p>
+                <button class="btn btn-primary "
+                (click)="addToUser(i)">Add to Cart</button>
+
+                <button class="btn btn-primary ms-4"
+                (click)="openDetailsPage(x.name)">View Details</button>
+
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>  
+</div> 
+    
+    
+  

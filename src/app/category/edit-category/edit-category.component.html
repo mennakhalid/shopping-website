@@ -1,0 +1,86 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-2 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-2 p-md-4">
+                        <h3 class="mb-2 pb-md-0 mb-md-2 text-center">Edit Category</h3>
+                        <p *ngIf="Message != ''">{{ Message }}</p>
+                        <form #editCategory= "ngForm">
+
+                            <div class="row">
+                                <div class="col-md-12 mb-2">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="categoryName">Category Name</label>
+                                        <input type="text" 
+                                            id="categoryName" 
+                                                class="form-control form-control-lg"
+                                                name="name"
+                                                [(ngModel)]="category_name"/>   
+                                    </div>
+                                </div>
+                            </div>   
+
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outline">
+                                        <input class="btn btn-primary btn-lg form-control form-control-lg" 
+                                        type="submit" 
+                                        (click)="checkAvailable()"
+                                        value="View Category" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf="apper == true">
+
+                                <div class="col-md-12 mb-2">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="categoryName">Category Name</label>
+                                        <input type="text" 
+                                            id="categoryName" 
+                                            class="form-control form-control-lg" 
+                                            name="name"
+                                            [(ngModel)]="category.name"/> 
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-2">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="categoryName">Category Image</label>
+                                        <input type="text" 
+                                            id="categoryName" 
+                                            class="form-control form-control-lg" 
+                                            name="image"
+                                            [(ngModel)]="category.image"/> 
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="lastName">Category Description</label>
+                                        <textarea name="" 
+                                            id="categoryDescription" 
+                                            cols="50" rows="10"
+                                            name="description"
+                                            [(ngModel)]="category.description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-2">
+                                    <input 
+                                        class="btn btn-primary btn-lg form-control form-control-lg" 
+                                        type="submit" 
+                                        value="Edit" 
+                                        (click)="EditCategory()"/>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
